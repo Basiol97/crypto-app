@@ -1,12 +1,37 @@
-import './App.css';
-import CoinList from 'pages/CoinList';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { RootState } from 'store/index';
+import { darkTheme, lightTheme } from "./my-theme";
+import CoinList from "pages/CoinList";
+const GlobalStyle = createGlobalStyle`
+.App {
+  text-align: center;
+  background-color:${(props) => props.theme.main};
+  color: ${(props) => props.theme.secondary};
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}`;
 
-function App() {
+  
+const App:React.FC = () => {
+const theme: any = useSelector((state: RootState) => state.theme.themeMode );
+
   return (
-    <div className="App">
-      <CoinList/>
-    </div>
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+      <div className="App">
+        <GlobalStyle />
+        <Router>
+          <Routes>
+            <Route path="/" element={<CoinList />} />
+          </Routes>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
