@@ -3,6 +3,7 @@ import { CCarousel, CCarouselItem } from "@coreui/react";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import LineChart from "components/LineChart";
 import BarChart from "components/BarChart";
+import CryptoTable from "components/CryptoTable";
 import ChartsPeriodConverter from "components/ChartsPeriodConverter";
 import {
   CoinListOuterContainer,
@@ -41,6 +42,7 @@ const CoinList: React.FC = () => {
           </ChartsInnerContainer>
         </ChartsOuterContainer>
         <ChartsPeriodConverter />
+        <CryptoTable />
       </CoinListInnerContainer>
     </CoinListOuterContainer>
   );
