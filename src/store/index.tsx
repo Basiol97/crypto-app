@@ -4,6 +4,7 @@ import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import currencyTypeReducer from "store/features/currencySlice/currencyTypeSlice";
 import themeModeReducer from "store/features/ThemeModeSlice/ThemeModeSlice";
+import coinListReducer from "store/features/cryptoTablelistSlice/cryptoTableList";
 import periodDisplayReducer from "store/features/dataDisplayPeriodSlice/dataDisplayPeriod";
 import chartsReducer from "store/features/chartsSlice/chartsSlice";
 import {
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   currencyType: currencyTypeReducer,
   chartsData: chartsReducer,
   periodDisplay: periodDisplayReducer,
+  coinList: coinListReducer,
   theme: themeModeReducer,
 });
 
