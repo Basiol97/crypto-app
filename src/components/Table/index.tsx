@@ -1,7 +1,7 @@
-import React from "react";
-import Row from "components/Row/index";
+import Row from "components/Row";
 import { useSelector } from "react-redux";
 import { RootState } from "store/index";
+import { BsFilter } from "react-icons/bs";
 import {
   TableContainer,
   TableHeader,
@@ -12,9 +12,15 @@ import {
   OneHour,
   TwentyFourHours,
   SevenDays,
+  FilterDataBy,
   VolMarketCap,
+  SortItem,
   CirculatingTotalSup,
 } from "pages/CoinList/CoinList.styled";
+
+type Props = {
+  handleUpdateQuery: (param: string) => void;
+};
 
 interface Item {
   image: string;
@@ -32,10 +38,39 @@ interface Item {
   sparkline_in_7d: { price: number[] };
 }
 
-const Table = () => {
+const Table = (props: Props) => {
   const { coinsData } = useSelector((state: RootState) => state.coinList);
   return (
     <div>
+      <FilterDataBy>
+        <span>Sort by: </span>
+        <span>
+          Name
+          <SortItem>
+            <BsFilter onClick={() => props.handleUpdateQuery("name")} />
+          </SortItem>
+        </span>
+        <span>
+          Market cap
+          <SortItem>
+            <BsFilter
+              onClick={() => {
+                props.handleUpdateQuery("marketcap");
+              }}
+            />
+          </SortItem>
+        </span>
+        <span>
+          Volume
+          <SortItem>
+            <BsFilter
+              onClick={() => {
+                props.handleUpdateQuery("volume");
+              }}
+            />
+          </SortItem>
+        </span>
+      </FilterDataBy>
       <TableContainer>
         <TableHeader>
           <tr>

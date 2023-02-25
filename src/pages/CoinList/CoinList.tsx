@@ -1,9 +1,9 @@
 import React from "react";
 import { CCarousel, CCarouselItem } from "@coreui/react";
 import "@coreui/coreui/dist/css/coreui.min.css";
+import CryptoTable from "components/CryptoTable/index";
 import LineChart from "components/LineChart";
 import BarChart from "components/BarChart";
-import CryptoTable from "components/CryptoTable";
 import ChartsPeriodConverter from "components/ChartsPeriodConverter";
 import {
   CoinListOuterContainer,
