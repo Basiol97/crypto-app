@@ -22,7 +22,7 @@ import {
 ChartJS.register(...registerables);
 
 const LineChart: React.FC = () => {
-  const currencyType: string = useSelector((state: RootState) => state.currencyType.currencyType);
+  const currencyType = useSelector((state: RootState) => state.currencyType.currencyType);
   const { chartsData, isLoading } = useSelector((state: RootState) => state.chartsData);
   const { buttonsLabels } = useSelector((state: RootState) => state.periodDisplay);
   const dispatch: AppDispatch = useDispatch();
