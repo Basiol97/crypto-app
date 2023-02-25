@@ -13,13 +13,11 @@ const root = ReactDOM.createRoot(rootElement as HTMLElement);
 let persistor = persistStore(store);
 
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
-  </React.StrictMode>
 );
 
 reportWebVitals();

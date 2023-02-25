@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface InitialState {
+  currencyType: string,
+  currencyOptions: string[],
+};
+
+const initialState:InitialState = {
   currencyType: "usd",
   currencyOptions: ["USD", "GBP", "EUR"],
 };
