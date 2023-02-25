@@ -38,10 +38,15 @@ const CryptoTable = () => {
   const dispatch: AppDispatch = useDispatch();
   
   useEffect(() => {
-    if (order || CoinPage) {
+    if (order) {
       dispatch(fetchData({ currencyType, CoinPage, order }));
     }
   }, [order, CoinPage, currencyType]);
+
+  useEffect(() => {
+      dispatch(fetchData({ currencyType, CoinPage, order }));
+  }, [CoinPage]);
+  
 
   useEffect(() => {
     if (queryParams.get("sortBy") == null) {
@@ -97,7 +102,7 @@ const CryptoTable = () => {
               />
             </SpinnerContainer>
           )}
-          {fetchedData && <Table />}
+          {fetchedData && <Table handleUpdateQuery={handleUpdateQuery} />}
         </CryptoTableInnerContainer>
       </CryptoTableOuterContainer>
     </InfiniteScroll>

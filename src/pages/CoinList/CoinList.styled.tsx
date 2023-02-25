@@ -504,7 +504,15 @@ export const FilterDataBy = styled.div`
   display: flex;
   justify-content: center;
   gap: 30px;
-  border-bottom: 0.5px solid white;
+
+  align-items: center;
+  span {
+    background-color: ${({ theme }) => theme.fourthly};
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin: auto 0;
+  }
 `;
 
 export const SortItem = styled.span`
