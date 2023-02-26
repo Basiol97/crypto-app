@@ -1,7 +1,6 @@
 import React from "react";
 import SparkLine from "components/SparkLine/SparkLine";
 import { RootState } from "store/index";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import tableCoinPriceFormat from "utilities/tableCoinPriceFormat/index";
 import handlecurrencySymbol from "utilities/handlecurrencySymbol";
@@ -64,23 +63,21 @@ const Row = ({
     (state: RootState) => state.currencyType
   );
 
-  const [colors, setColors] = useState([
+  const colors = [
     "#FFB528",
     "#474C77",
     "#FE7D43",
     "#B3404A",
     "#74D0B4",
     "#2775C9",
-  ]);
-
+  ];
   const colorIndex = Math.floor(Math.random() * (colors.length - 0) + 0);
-
   const backgroundColor = colors[colorIndex];
   const formatSparkLineData = () => {
     const sparkLineData = sparkline_in_7d?.price
-      ?.filter((item, index: number) => index % 2 == 0)
-      .filter((item, index: number) => Math.abs(index % 2) == 1)
-      .filter((item, index: number) => index % 2 == 0);
+      ?.filter((item, index: number) => index % 2 === 0)
+      .filter((item, index: number) => Math.abs(index % 2) === 1)
+      .filter((item, index: number) => index % 2 === 0);
     return sparkLineData;
   };
 
