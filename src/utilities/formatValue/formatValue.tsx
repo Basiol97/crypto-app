@@ -1,6 +1,5 @@
 import { PostivePriceChangePercentage, NegativePriceChangePercentage } from 'pages/CoinList/CoinList.styled';
 const formatValue = (value:number) => {
-    {
         const formattedValue =
             value >= 0 ? (
                 <PostivePriceChangePercentage>
@@ -12,7 +11,6 @@ const formatValue = (value:number) => {
                 </NegativePriceChangePercentage>
             );
         return formattedValue;
-    }
 };
 
 export default formatValue;

@@ -7,6 +7,7 @@ import themeModeReducer from "store/features/ThemeModeSlice/ThemeModeSlice";
 import coinListReducer from "store/features/cryptoTablelistSlice/cryptoTableList";
 import periodDisplayReducer from "store/features/dataDisplayPeriodSlice/dataDisplayPeriod";
 import chartsReducer from "store/features/chartsSlice/chartsSlice";
+import coinPageReducer from "store/features/coinPageSlice/coinPageSlice";
 import {
   FLUSH,
   REHYDRATE,
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   periodDisplay: periodDisplayReducer,
   coinList: coinListReducer,
   theme: themeModeReducer,
+  coinPage: coinPageReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -40,5 +42,5 @@ export const store = configureStore({
     }),
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

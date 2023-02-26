@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface Button {
-  id:string;
+  id: string;
   label: string;
   periodInDays: number;
-  status: boolean 
+  status: boolean;
 }
 
 interface InitialState {
-  buttonsLabels: Button[]; 
+  buttonsLabels: Button[];
 }
 
 const initialState: InitialState = {
@@ -36,16 +36,5 @@ export const dataPeriodDisplaySlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { handleClick } = dataPeriodDisplaySlice.actions;
-
 export default dataPeriodDisplaySlice.reducer;
-
-{
-  /* 
-  
-      handledPeriodDisplaylength: (state, action) => {
-      state.buttonsLabels = state.buttonsLabels.filter( (item) => item.status == true).periodInDays;
-    },
-  */
-}
