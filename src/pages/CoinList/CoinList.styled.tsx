@@ -253,7 +253,7 @@ export const Container = styled.div<Props>`
 `;
 
 export const CryptoTableInnerContainer = styled.div`
-  min-height: 70vh;
+  min-height: 100vh;
   margin: 0 auto 60px auto;
   background-color: ${({ theme }) => theme.main};
   border-radius: 10px;

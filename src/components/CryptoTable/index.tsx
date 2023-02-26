@@ -26,8 +26,12 @@ const CryptoTable = () => {
   const { sortBy, sortByAsc } = queryString.parse(search);
   const [queryParams, setQueryParams] = useSearchParams();
   const [CoinPage, setCoinPage] = useState(1);
-  const currencyType = useSelector((state: RootState) => state.currencyType.currencyType);
-  const { isLoading, coinsData } = useSelector((state: RootState) => state.coinList);
+  const currencyType = useSelector(
+    (state: RootState) => state.currencyType.currencyType
+  );
+  const { isLoading, coinsData } = useSelector(
+    (state: RootState) => state.coinList
+  );
   const [filtredBySwitch, setFiltredBySwitch] = useState<boolean>(true);
   const [order, setOrder] = useState<string | null>("");
   const [searchParam, setsearchParam] = useState<searchParam>({
@@ -36,7 +40,7 @@ const CryptoTable = () => {
     name: ["id_asc", "id_desc"],
   });
   const dispatch: AppDispatch = useDispatch();
-  
+
   useEffect(() => {
     if (order) {
       dispatch(fetchData({ currencyType, CoinPage, order }));
@@ -44,9 +48,8 @@ const CryptoTable = () => {
   }, [order, CoinPage, currencyType]);
 
   useEffect(() => {
-      dispatch(fetchData({ currencyType, CoinPage, order }));
+    dispatch(fetchData({ currencyType, CoinPage, order }));
   }, [CoinPage]);
-  
 
   useEffect(() => {
     if (queryParams.get("sortBy") == null) {
