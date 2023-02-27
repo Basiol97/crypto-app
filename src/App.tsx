@@ -6,6 +6,7 @@ import { RootState } from 'store/index';
 import { darkTheme, lightTheme } from "./my-theme";
 import CoinList from "pages/CoinList";
 import CoinPage from "pages/CoinPage";
+import Portfolio from "pages/Portfolio";
 const GlobalStyle = createGlobalStyle`
 .App {
   text-align: center;
@@ -29,6 +30,7 @@ const theme: any = useSelector((state: RootState) => state.theme.themeMode );
           <Routes>
             <Route path="/" element={<CoinList />} />
             <Route path="/coinpage/:coinid" element={<CoinPage />} />
+            <Route path="/portfolio" element={<Portfolio />} />
           </Routes>
         </Router>
       </div>

@@ -8,6 +8,7 @@ import coinListReducer from "store/features/cryptoTablelistSlice/cryptoTableList
 import periodDisplayReducer from "store/features/dataDisplayPeriodSlice/dataDisplayPeriod";
 import chartsReducer from "store/features/chartsSlice/chartsSlice";
 import coinPageReducer from "store/features/coinPageSlice/coinPageSlice";
+import portfolioSliceReducer from "store/features/portfolioSlice/portfolioSlice";
 import {
   FLUSH,
   REHYDRATE,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   coinList: coinListReducer,
   theme: themeModeReducer,
   coinPage: coinPageReducer,
+  portfolio: portfolioSliceReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
