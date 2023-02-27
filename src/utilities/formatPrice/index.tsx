@@ -13,7 +13,7 @@ const formatPrice = (price?:number | string | number[]) => {
         const currencySymbols = "k";
         return formatedPrice + currencySymbols;
     } else {
-        return Math.abs(Number(price));
+        return Math.abs(Number(price)).toFixed(2);
     }
 };
 
