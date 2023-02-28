@@ -9,6 +9,8 @@ import periodDisplayReducer from "store/features/dataDisplayPeriodSlice/dataDisp
 import chartsReducer from "store/features/chartsSlice/chartsSlice";
 import coinPageReducer from "store/features/coinPageSlice/coinPageSlice";
 import portfolioSliceReducer from "store/features/portfolioSlice/portfolioSlice";
+import upperNavbarReducer from "store/features/upperNavbarSlice/upperNavbar";
+import mobileSearchBarReducer from "store/features/mobileSearchBarSlice/MobileSearchBar";
 import {
   FLUSH,
   REHYDRATE,
@@ -31,6 +33,8 @@ const reducer = combineReducers({
   theme: themeModeReducer,
   coinPage: coinPageReducer,
   portfolio: portfolioSliceReducer,
+  upperNavbar: upperNavbarReducer,
+  mobileSearchBar: mobileSearchBarReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
