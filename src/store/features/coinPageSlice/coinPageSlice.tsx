@@ -45,13 +45,13 @@ type Coin = {
   };
 };
 
-type initialState = {
+type InitialState = {
   isLoading: boolean;
   coinData: Coin;
   error: string;
 };
-
-const initialState: initialState = {
+  
+const initialState: InitialState = {
   isLoading: false,
   coinData: {},
   error: "",

@@ -10,6 +10,7 @@ import chartsReducer from "store/features/chartsSlice/chartsSlice";
 import coinPageReducer from "store/features/coinPageSlice/coinPageSlice";
 import portfolioSliceReducer from "store/features/portfolioSlice/portfolioSlice";
 import upperNavbarReducer from "store/features/upperNavbarSlice/upperNavbar";
+import lowerNavbarReducer from "store/features/lowerNavbarSlice/lowerNavbar";
 import mobileSearchBarReducer from "store/features/mobileSearchBarSlice/MobileSearchBar";
 import {
   FLUSH,
@@ -34,6 +35,7 @@ const reducer = combineReducers({
   coinPage: coinPageReducer,
   portfolio: portfolioSliceReducer,
   upperNavbar: upperNavbarReducer,
+  lowerNavbar: lowerNavbarReducer,
   mobileSearchBar: mobileSearchBarReducer,
 });
 

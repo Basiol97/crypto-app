@@ -17,7 +17,7 @@ export const fetchData = createAsyncThunk(
   async ({ currencyType, CoinPage, order }: Arg) => {
     return fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyType}&order=${order}&per_page=${
-        CoinPage == 1 ? 10 : CoinPage === 2 ? 20 : CoinPage === 3 ? 30 : 30
+        CoinPage === 1 ? 10 : CoinPage === 2 ? 20 : CoinPage === 3 ? 30 : 30
       }&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
     ).then((response) => response.json());
   }
