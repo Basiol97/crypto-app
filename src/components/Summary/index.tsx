@@ -51,58 +51,12 @@ import {
   LeftCircle,
 } from "pages/CoinList/CoinList.styled";
 
-interface Currency {
-  usd: number;
-  gbp: number;
-  eur: number;
-  btc: number;
-}
-
-interface Price {
-  usd: number;
-  gbp: number;
-  eur: number;
-}
-
-interface Date {
-  usd: string;
-  gbp: string;
-  eur: string;
-}
-
-type Coin = {
-  genesis_date?: string;
-  description?: { en: string };
-  links?: {
-    blockchain_site: string[];
-    homepage: string;
-  };
-  id?: string;
-  image?: { small: string };
-  name?: string;
-  symbol?: string;
-  market_data?: {
-    ath: Currency;
-    atl: Currency;
-    atl_date: Date;
-    ath_date: Date;
-    current_price: Currency;
-    market_cap: Currency;
-    fully_diluted_valuation: Price;
-    high_24h: Price;
-    total_volume: Price;
-    circulating_supply: string;
-    max_supply: string;
-  };
-};
-
-interface Props {
-  coinData: Coin;
-}
-const Summary = ({ coinData }: Props) => {
+const Summary = () => {
   const currencyType: string = useSelector(
     (state: RootState) => state.currencyType.currencyType
   );
+  const { coinData } = useSelector((state: RootState) => state.coinPage);
+
   interface CurrencyType {
     usd: number;
     gbp: number;
@@ -128,251 +82,246 @@ const Summary = ({ coinData }: Props) => {
   const backgroundColor = colors[colorIndex];
   return (
     <SummaryInfoContainer>
-          <CoinContainer>
-            <TopContainer>
-              <CoinImage src={coinData.image?.small} />
-              <CoinName>
-                {coinData.name} <span>({coinData.symbol})</span>
-              </CoinName>
-            </TopContainer>
-            <BottomContainer>
-              <LinkItem target="_blank" href={coinData.links?.homepage}>
-                <BsLink45Deg size={15} />
-              </LinkItem>
-              <SummaryLink>{coinData.links?.homepage}</SummaryLink>
-            </BottomContainer>
-          </CoinContainer>
-          <CoinPricesOuterContainer>
-            <CoinPricesInnerContainer>
-              <PriceOuterContainer>
-                <PriceInnerContainer>
-                  <CurrentPrice>
+      <CoinContainer>
+        <TopContainer>
+          <CoinImage src={coinData.image?.small} />
+          <CoinName>
+            {coinData.name} <span>({coinData.symbol})</span>
+          </CoinName>
+        </TopContainer>
+        <BottomContainer>
+          <LinkItem target="_blank" href={coinData.links?.homepage}>
+            <BsLink45Deg size={15} />
+          </LinkItem>
+          <SummaryLink>{coinData.links?.homepage}</SummaryLink>
+        </BottomContainer>
+      </CoinContainer>
+      <CoinPricesOuterContainer>
+        <CoinPricesInnerContainer>
+          <PriceOuterContainer>
+            <PriceInnerContainer>
+              <CurrentPrice>
+                {handlecurrencySymbol(currencyType)}
+                {formatPrice(
+                  coinData.market_data?.current_price[
+                    currencyType as keyof CurrencyType
+                  ]
+                )}
+              </CurrentPrice>
+              <PricePercentage>
+                {(
+                  coinData.market_data!.ath[
+                    currencyType as keyof CurrencyType
+                  ] /
+                  coinData.market_data!.atl[currencyType as keyof CurrencyType]
+                ).toFixed(2)}
+                %
+              </PricePercentage>
+            </PriceInnerContainer>
+            <ProfitContainer>
+              Profit:{" "}
+              <Profit>
+                {handlecurrencySymbol(currencyType)}
+                {formatPrice(
+                  coinData.market_data!.ath[
+                    currencyType as keyof CurrencyType
+                  ] -
+                    coinData.market_data!.atl[
+                      currencyType as keyof CurrencyType
+                    ]
+                )}
+              </Profit>
+            </ProfitContainer>
+            <IconContainer>
+              <BiLayer size={30} />
+            </IconContainer>
+          </PriceOuterContainer>
+          <TimesContainer>
+            <AllTimeHighContainer>
+              <div>
+                <BiCaretUp color="#00FC2A" />
+              </div>
+              <div>
+                <div>
+                  All Time High:{" "}
+                  <AllTimeHighPrice color="#00FC2A">
                     {handlecurrencySymbol(currencyType)}
                     {formatPrice(
-                      coinData.market_data?.current_price[
+                      coinData.market_data?.ath[
                         currencyType as keyof CurrencyType
                       ]
                     )}
-                  </CurrentPrice>
-                  <PricePercentage>
-                    {(
-                      coinData.market_data!.ath[
-                        currencyType as keyof CurrencyType
-                      ] /
-                      coinData.market_data!.atl[
-                        currencyType as keyof CurrencyType
-                      ]
-                    ).toFixed(2)}
-                    %
-                  </PricePercentage>
-                </PriceInnerContainer>
-                <ProfitContainer>
-                  Profit:{" "}
-                  <Profit>
+                  </AllTimeHighPrice>
+                </div>
+                <div>
+                  {formatDate(
+                    coinData.market_data!.atl_date[
+                      currencyType as keyof CurrencyType2
+                    ]
+                  )}
+                </div>
+              </div>
+            </AllTimeHighContainer>
+            <AllTimeLowContainer>
+              <span>
+                <BiCaretDown color="red" />
+              </span>
+              <div>
+                <div>
+                  All Time Low:{" "}
+                  <AllTimeHighPrice color="red">
                     {handlecurrencySymbol(currencyType)}
                     {formatPrice(
-                      coinData.market_data!.ath[
-                        currencyType as keyof CurrencyType
-                      ] -
-                        coinData.market_data!.atl[
-                          currencyType as keyof CurrencyType
-                        ]
-                    )}
-                  </Profit>
-                </ProfitContainer>
-                <IconContainer>
-                  <BiLayer size={30} />
-                </IconContainer>
-              </PriceOuterContainer>
-              <TimesContainer>
-                <AllTimeHighContainer>
-                  <div>
-                    <BiCaretUp color="#00FC2A" />
-                  </div>
-                  <div>
-                    <div>
-                      All Time High:{" "}
-                      <AllTimeHighPrice color="#00FC2A">
-                        {handlecurrencySymbol(currencyType)}
-                        {formatPrice(
-                          coinData.market_data?.ath[
-                            currencyType as keyof CurrencyType
-                          ]
-                        )}
-                      </AllTimeHighPrice>
-                    </div>
-                    <div>
-                      {formatDate(
-                        coinData.market_data!.atl_date[
-                          currencyType as keyof CurrencyType2
-                        ]
-                      )}
-                    </div>
-                  </div>
-                </AllTimeHighContainer>
-                <AllTimeLowContainer>
-                  <span>
-                    <BiCaretDown color="red" />
-                  </span>
-                  <div>
-                    <div>
-                      All Time Low:{" "}
-                      <AllTimeHighPrice color="red">
-                        {handlecurrencySymbol(currencyType)}
-                        {formatPrice(
-                          coinData.market_data?.atl[
-                            currencyType as keyof CurrencyType
-                          ]
-                        )}
-                      </AllTimeHighPrice>
-                    </div>
-                    <div>
-                      {formatDate(
-                        coinData.market_data!.ath_date[
-                          currencyType as keyof CurrencyType2
-                        ]
-                      )}
-                    </div>
-                  </div>
-                </AllTimeLowContainer>
-              </TimesContainer>
-            </CoinPricesInnerContainer>
-          </CoinPricesOuterContainer>
-          <CoinGeneralInfosContainer>
-            <MarketCapContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Market Cap:
-                <span>
-                  {handlecurrencySymbol(currencyType)}
-                  {formatPrice(
-                    coinData.market_data?.market_cap[
-                      currencyType as keyof CurrencyType
-                    ]
-                  )}
-                </span>
-              </div>
-            </MarketCapContainer>
-            <FullyDilutedContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Fully Diluted Valuation:
-                <span>
-                  {handlecurrencySymbol(currencyType)}
-                  {formatPrice(
-                    coinData.market_data?.fully_diluted_valuation[
-                      currencyType as keyof CurrencyType
-                    ]
-                  )}
-                </span>
-              </div>
-            </FullyDilutedContainer>
-            <VolumeContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Volume 24h:
-                <span>
-                  {" "}
-                  {handlecurrencySymbol(currencyType)}
-                  {formatPrice(
-                    coinData.market_data?.high_24h[
-                      currencyType as keyof CurrencyType
-                    ]
-                  )}
-                </span>
-              </div>
-            </VolumeContainer>
-            <VolumeMarketContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Vol/Mar:
-                <span>
-                  {handlecurrencySymbol(currencyType)}
-                  {formatPrice(
-                    coinData.market_data!.total_volume[
-                      currencyType as keyof CurrencyType
-                    ] /
-                      coinData.market_data!.market_cap[
+                      coinData.market_data?.atl[
                         currencyType as keyof CurrencyType
                       ]
-                  )}
-                </span>
-              </div>
-            </VolumeMarketContainer>
-            <TotalVolumeContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Totoal Volume:
-                <span>
-                  {formatPrice(
-                    coinData.market_data?.total_volume[
-                      currencyType as keyof CurrencyType
+                    )}
+                  </AllTimeHighPrice>
+                </div>
+                <div>
+                  {formatDate(
+                    coinData.market_data!.ath_date[
+                      currencyType as keyof CurrencyType2
                     ]
-                  )}{" "}
-                  BTC
-                </span>
+                  )}
+                </div>
               </div>
-            </TotalVolumeContainer>
-            <CirculatingSupplyContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Circulating Supply:
-                <span>
-                  {formatPrice(coinData.market_data?.circulating_supply)} BTC
-                </span>
-              </div>
-            </CirculatingSupplyContainer>
-            <MaxSupplyContainer>
-              <div>
-                <FcAbout size={25} />
-              </div>
-              <div>
-                Max Supply:
-                <span>
-                  {" "}
-                  {formatPrice(coinData.market_data?.max_supply)} BTC
-                </span>
-              </div>
-            </MaxSupplyContainer>
-            <ProgressBarContainer>
-              <ProgressBarContainerTopContainer>
-                <LeftItem>
-                  <LeftCircle backGroundcolor={backgroundColor} />
-                  <LeftPrice color={backgroundColor}>
-                    {tableCoinPriceFormat(1)}%
-                  </LeftPrice>
-                </LeftItem>
-                <RightItem>
-                  <RightCircle backGroundcolor={backgroundColor} />
-                  <RightPrice color={backgroundColor}>
-                    {tableCoinPriceFormat(100)}%
-                  </RightPrice>
-                </RightItem>
-              </ProgressBarContainerTopContainer>
-              <Container backGroundcolor={backgroundColor} width={100}>
-                <Progress
-                  background={backgroundColor}
-                  percent={
-                    (Number(coinData.market_data?.circulating_supply) /
-                      Number(coinData.market_data?.max_supply)) *
-                    100
-                  }
-                />
-              </Container>
-            </ProgressBarContainer>
-          </CoinGeneralInfosContainer>
+            </AllTimeLowContainer>
+          </TimesContainer>
+        </CoinPricesInnerContainer>
+      </CoinPricesOuterContainer>
+      <CoinGeneralInfosContainer>
+        <MarketCapContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Market Cap:
+            <span>
+              {handlecurrencySymbol(currencyType)}
+              {formatPrice(
+                coinData.market_data?.market_cap[
+                  currencyType as keyof CurrencyType
+                ]
+              )}
+            </span>
+          </div>
+        </MarketCapContainer>
+        <FullyDilutedContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Fully Diluted Valuation:
+            <span>
+              {handlecurrencySymbol(currencyType)}
+              {formatPrice(
+                coinData.market_data?.fully_diluted_valuation[
+                  currencyType as keyof CurrencyType
+                ]
+              )}
+            </span>
+          </div>
+        </FullyDilutedContainer>
+        <VolumeContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Volume 24h:
+            <span>
+              {" "}
+              {handlecurrencySymbol(currencyType)}
+              {formatPrice(
+                coinData.market_data?.high_24h[
+                  currencyType as keyof CurrencyType
+                ]
+              )}
+            </span>
+          </div>
+        </VolumeContainer>
+        <VolumeMarketContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Vol/Mar:
+            <span>
+              {handlecurrencySymbol(currencyType)}
+              {formatPrice(
+                coinData.market_data!.total_volume[
+                  currencyType as keyof CurrencyType
+                ] /
+                  coinData.market_data!.market_cap[
+                    currencyType as keyof CurrencyType
+                  ]
+              )}
+            </span>
+          </div>
+        </VolumeMarketContainer>
+        <TotalVolumeContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Totoal Volume:
+            <span>
+              {formatPrice(
+                coinData.market_data?.total_volume[
+                  currencyType as keyof CurrencyType
+                ]
+              )}{" "}
+              BTC
+            </span>
+          </div>
+        </TotalVolumeContainer>
+        <CirculatingSupplyContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Circulating Supply:
+            <span>
+              {formatPrice(coinData.market_data?.circulating_supply)} BTC
+            </span>
+          </div>
+        </CirculatingSupplyContainer>
+        <MaxSupplyContainer>
+          <div>
+            <FcAbout size={25} />
+          </div>
+          <div>
+            Max Supply:
+            <span> {formatPrice(coinData.market_data?.max_supply)} BTC</span>
+          </div>
+        </MaxSupplyContainer>
+        <ProgressBarContainer>
+          <ProgressBarContainerTopContainer>
+            <LeftItem>
+              <LeftCircle backGroundcolor={backgroundColor} />
+              <LeftPrice color={backgroundColor}>
+                {tableCoinPriceFormat(1)}%
+              </LeftPrice>
+            </LeftItem>
+            <RightItem>
+              <RightCircle backGroundcolor={backgroundColor} />
+              <RightPrice color={backgroundColor}>
+                {tableCoinPriceFormat(100)}%
+              </RightPrice>
+            </RightItem>
+          </ProgressBarContainerTopContainer>
+          <Container backGroundcolor={backgroundColor} width={100}>
+            <Progress
+              background={backgroundColor}
+              percent={
+                (Number(coinData.market_data?.circulating_supply) /
+                  Number(coinData.market_data?.max_supply)) *
+                100
+              }
+            />
+          </Container>
+        </ProgressBarContainer>
+      </CoinGeneralInfosContainer>
     </SummaryInfoContainer>
   );
 };
