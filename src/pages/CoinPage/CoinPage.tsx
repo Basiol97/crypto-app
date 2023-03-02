@@ -48,7 +48,7 @@ const CoinPage: React.FC = () => {
       {fetchedData && (
         <CoinPageInnerContainer>
           <SummaryLabel>Summary</SummaryLabel>
-          <Summary coinData={coinData} />
+          <Summary />
           <Description />
           <LinksContainer>
             {coinData?.links?.blockchain_site

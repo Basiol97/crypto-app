@@ -56,7 +56,7 @@ const LowerNavbar = () => {
           </NavbarMarketCapContainer>
           <MarketCapVsVolumeOuterContainer>
             <IconContainer>
-              <img src={defaultIcons[0]?.image} />
+              <img src={defaultIcons[0]?.image} alt="coin" />
             </IconContainer>
             <div>
               {lowerNavbarData?.data!.market_cap_percentage.btc.toFixed(2)}%
@@ -75,7 +75,7 @@ const LowerNavbar = () => {
           </MarketCapVsVolumeOuterContainer>
           <MarketCapVsVolumeOuterContainer>
             <IconContainer>
-              <img src={defaultIcons[1]?.image} />
+              <img src={defaultIcons[1]?.image} alt="coin" />
             </IconContainer>
             <div>
               {lowerNavbarData.data?.market_cap_percentage.eth.toFixed(2)}%
