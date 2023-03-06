@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface Data {
-  active_cryptocurrencies: number;
+  active_cryptocurrencies?: number;
   ended_icos: number;
-  market_cap_percentage: {
+  market_cap_percentage?: {
     btc: number;
     usd: number;
     eth: number;
   };
-  total_market_cap: {
+  total_market_cap?: {
     btc: number;
     usd: number;
     eth: number;
   };
-  total_volume: {
+  total_volume?: {
     btc: number;
     usd: number;
     eth: number;
   };
-  markets: number;
+  markets?: number;
 }
 
 interface Coin {
