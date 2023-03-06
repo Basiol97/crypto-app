@@ -6,6 +6,7 @@ import queryString from "query-string";
 import { useSearchParams, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { RotatingLines } from "react-loader-spinner";
+import {fetchDefaultCoins} from 'store/features/portfolioSlice/portfolioSlice'
 import { fetchData } from "store/features/cryptoTablelistSlice/cryptoTableList";
 import Table from "components/Table/index";
 import {
@@ -32,6 +33,7 @@ const CryptoTable = () => {
   const { isLoading, coinsData } = useSelector(
     (state: RootState) => state.coinList
   );
+  
   const [filtredBySwitch, setFiltredBySwitch] = useState<boolean>(true);
   const [order, setOrder] = useState<string | null>("");
   const [searchParam, setsearchParam] = useState<searchParam>({
@@ -60,6 +62,7 @@ const CryptoTable = () => {
         dispatch(fetchData({ currencyType, CoinPage, order }));
       }
     }
+    dispatch(fetchDefaultCoins(currencyType));
   }, []);
 
   useEffect(() => {
