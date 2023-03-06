@@ -7,7 +7,7 @@ const NavBar = () => {
     <NavbarContainer>
       <NavbarInnerContainer>
         <UpperNavbar />
-        <LowerNavbar />
+        {/* <LowerNavbar /> */}
       </NavbarInnerContainer>
     </NavbarContainer>
   );
