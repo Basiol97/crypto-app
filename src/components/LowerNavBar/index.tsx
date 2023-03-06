@@ -31,6 +31,10 @@ const LowerNavbar = () => {
   }, []);
 
   const fetchedData = !isLoading && lowerNavbarData;
+  const total_volume_btc = lowerNavbarData?.data?.total_volume?.btc;
+  const total_market_cap_btc = lowerNavbarData?.data?.total_market_cap?.btc;
+  const total_volume_eth = lowerNavbarData?.data?.total_volume?.eth;
+  const total_market_cap_eth = lowerNavbarData?.data?.total_market_cap?.eth;
 
   return (
     <LowerNavBar>
@@ -46,30 +50,30 @@ const LowerNavbar = () => {
             <GoPrimitiveDot />
             <div>
               {tableCoinPriceFormat(
-                lowerNavbarData?.data?.total_market_cap.usd
+                lowerNavbarData?.data?.total_market_cap?.usd
               )}
             </div>
           </NavbarMarketCapContainer>
           <NavbarMarketCapContainer>
             <GoPrimitiveDot />
-            {tableCoinPriceFormat(lowerNavbarData?.data?.total_volume.usd)}
+            {tableCoinPriceFormat(lowerNavbarData?.data?.total_volume?.usd)}
           </NavbarMarketCapContainer>
           <MarketCapVsVolumeOuterContainer>
             <IconContainer>
               <img src={defaultIcons[0]?.image} alt="coin" />
             </IconContainer>
             <div>
-              {lowerNavbarData?.data?.market_cap_percentage.btc.toFixed(2)}%
+              {lowerNavbarData?.data?.market_cap_percentage?.btc.toFixed(2)}%
             </div>
             <NavMarketCapVsVolumeContainer>
               <NavProgressContainer>
-                <NavBarProgress
+               {total_volume_btc !== undefined && total_market_cap_btc !== undefined && (<NavBarProgress
                   percent={
-                    (lowerNavbarData?.data!.total_volume.btc /
-                      lowerNavbarData?.data!.total_market_cap.btc) *
+                    (total_volume_btc /
+                      total_market_cap_btc) *
                     100
                   }
-                />
+                />)}
               </NavProgressContainer>
             </NavMarketCapVsVolumeContainer>
           </MarketCapVsVolumeOuterContainer>
@@ -78,17 +82,17 @@ const LowerNavbar = () => {
               <img src={defaultIcons[1]?.image} alt="coin" />
             </IconContainer>
             <div>
-              {lowerNavbarData.data?.market_cap_percentage.eth.toFixed(2)}%
+              {lowerNavbarData.data?.market_cap_percentage?.eth.toFixed(2)}%
             </div>
             <NavMarketCapVsVolumeContainer>
               <NavProgressContainer>
-                <NavBarProgress
+              {total_volume_eth !== undefined && total_market_cap_eth !== undefined && (<NavBarProgress
                   percent={
-                    (lowerNavbarData?.data!.total_volume.eth /
-                      lowerNavbarData?.data!.total_market_cap.eth) *
+                    (total_volume_eth /
+                      total_market_cap_eth) *
                     100
                   }
-                />
+                />)}
               </NavProgressContainer>
             </NavMarketCapVsVolumeContainer>
           </MarketCapVsVolumeOuterContainer>
