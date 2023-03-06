@@ -67,7 +67,7 @@ const LowerNavbar = () => {
             </div>
             <NavMarketCapVsVolumeContainer>
               <NavProgressContainer>
-               {total_volume_btc !== undefined && total_market_cap_btc !== undefined && (<NavBarProgress
+               {total_volume_btc && total_market_cap_btc && (<NavBarProgress
                   percent={
                     (total_volume_btc /
                       total_market_cap_btc) *
@@ -86,7 +86,7 @@ const LowerNavbar = () => {
             </div>
             <NavMarketCapVsVolumeContainer>
               <NavProgressContainer>
-              {total_volume_eth !== undefined && total_market_cap_eth !== undefined && (<NavBarProgress
+              {total_volume_eth && total_market_cap_eth && (<NavBarProgress
                   percent={
                     (total_volume_eth /
                       total_market_cap_eth) *
