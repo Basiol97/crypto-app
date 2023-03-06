@@ -37,36 +37,36 @@ const LowerNavbar = () => {
       {fetchedData && (
         <NavbarBottomItemsContainer>
           <CoinsContainer>
-            Coins: {lowerNavbarData?.data!.active_cryptocurrencies}
+            Coins: {lowerNavbarData?.data?.active_cryptocurrencies}
           </CoinsContainer>
           <ExchangeContainer>
-            Exchange: {lowerNavbarData?.data!.markets}
+            Exchange: {lowerNavbarData?.data?.markets}
           </ExchangeContainer>
           <NavbarMarketCapContainer>
             <GoPrimitiveDot />
             <div>
               {tableCoinPriceFormat(
-                lowerNavbarData?.data!.total_market_cap.usd
+                lowerNavbarData?.data?.total_market_cap.usd
               )}
             </div>
           </NavbarMarketCapContainer>
           <NavbarMarketCapContainer>
             <GoPrimitiveDot />
-            {tableCoinPriceFormat(lowerNavbarData?.data!.total_volume.usd)}
+            {tableCoinPriceFormat(lowerNavbarData?.data?.total_volume.usd)}
           </NavbarMarketCapContainer>
           <MarketCapVsVolumeOuterContainer>
             <IconContainer>
               <img src={defaultIcons[0]?.image} alt="coin" />
             </IconContainer>
             <div>
-              {lowerNavbarData?.data!.market_cap_percentage.btc.toFixed(2)}%
+              {lowerNavbarData?.data?.market_cap_percentage.btc.toFixed(2)}%
             </div>
             <NavMarketCapVsVolumeContainer>
               <NavProgressContainer>
                 <NavBarProgress
                   percent={
-                    (lowerNavbarData.data!.total_volume.btc /
-                      lowerNavbarData.data!.total_market_cap.btc) *
+                    (lowerNavbarData?.data!.total_volume.btc /
+                      lowerNavbarData?.data!.total_market_cap.btc) *
                     100
                   }
                 />
@@ -84,8 +84,8 @@ const LowerNavbar = () => {
               <NavProgressContainer>
                 <NavBarProgress
                   percent={
-                    (lowerNavbarData.data!.total_volume.eth /
-                      lowerNavbarData.data!.total_market_cap.eth) *
+                    (lowerNavbarData?.data!.total_volume.eth /
+                      lowerNavbarData?.data!.total_market_cap.eth) *
                     100
                   }
                 />
