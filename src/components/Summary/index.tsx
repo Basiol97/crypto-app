@@ -112,29 +112,29 @@ const Summary = () => {
                       ]
                     )}
                   </CurrentPrice>
-                  <PricePercentage>
+                  {coinData.market_data && (<PricePercentage>
                     {(
-                      coinData.market_data!.ath[
+                      coinData.market_data.ath[
                       currencyType as keyof CurrencyType
                       ] /
-                      coinData.market_data!.atl[currencyType as keyof CurrencyType]
+                      coinData.market_data.atl[currencyType as keyof CurrencyType]
                     ).toFixed(2)}
                     %
-                  </PricePercentage>
+                  </PricePercentage>)}
                 </PriceInnerContainer>
                 <ProfitContainer>
                   Profit:{" "}
-                  <Profit>
+                  {coinData.market_data && (<Profit>
                     {handlecurrencySymbol(currencyType)}
                     {formatPrice(
-                      coinData.market_data!.ath[
+                      coinData.market_data.ath[
                       currencyType as keyof CurrencyType
                       ] -
-                      coinData.market_data!.atl[
+                      coinData.market_data.atl[
                       currencyType as keyof CurrencyType
                       ]
                     )}
-                  </Profit>
+                  </Profit>)}
                 </ProfitContainer>
                 <IconContainer>
                   <BiLayer size={30} />
@@ -157,13 +157,13 @@ const Summary = () => {
                         )}
                       </AllTimeHighPrice>
                     </div>
-                    <div>
+                    {coinData.market_data && (<div>
                       {formatDate(
-                        coinData.market_data!.atl_date[
+                        coinData.market_data?.atl_date[
                         currencyType as keyof CurrencyType2
                         ]
                       )}
-                    </div>
+                    </div>)}
                   </div>
                 </AllTimeHighContainer>
                 <AllTimeLowContainer>
@@ -182,13 +182,13 @@ const Summary = () => {
                         )}
                       </AllTimeHighPrice>
                     </div>
-                    <div>
+                    {coinData.market_data && (<div>
                       {formatDate(
-                        coinData.market_data!.ath_date[
+                        coinData.market_data?.ath_date[
                         currencyType as keyof CurrencyType2
                         ]
                       )}
-                    </div>
+                    </div>)}
                   </div>
                 </AllTimeLowContainer>
               </TimesContainer>
@@ -250,17 +250,17 @@ const Summary = () => {
               </div>
               <div>
                 Vol/Mar:
-                <span>
+                {coinData.market_data && (<span>
                   {handlecurrencySymbol(currencyType)}
                   {formatPrice(
-                    coinData.market_data!.total_volume[
+                    coinData.market_data?.total_volume[
                     currencyType as keyof CurrencyType
                     ] /
-                    coinData.market_data!.market_cap[
+                    coinData.market_data?.market_cap[
                     currencyType as keyof CurrencyType
                     ]
                   )}
-                </span>
+                </span>)}
               </div>
             </VolumeMarketContainer>
             <TotalVolumeContainer>
